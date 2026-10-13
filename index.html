@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bản đồ vùng đổ</title>
+<meta name="description" content="Bản đồ vùng đổ cây xanh sân trường: vòng tròn bán kính bằng chiều cao cây – THCS Trưng Vương, Đà Nẵng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap">
+<style>
+:root{
+  --paper:#F4F6F3; --panel:#FFFFFF; --ink:#1C2321; --muted:#5B6661; --rule:#D6DDD8;
+  --silk:#B4302A; --silk-soft:#F3DCD7; --bamboo:#6A8636; --storm:#1D5A82; --storm-soft:#DDE9F1;
+  --alert:#C46A00; --ok:#2D7A4F; --grass:#DCEAD6; --grass-line:#7FA77F; --water:#DCEBF5;
+  --f-display:"Literata", Georgia, "Times New Roman", serif;
+  --f-body:"Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#111614; --panel:#18201D; --ink:#E6ECE8; --muted:#9AA7A1; --rule:#2B3531;
+  --silk:#E36A5F; --silk-soft:#3B2522; --bamboo:#A3C46A; --storm:#72AED6; --storm-soft:#1A2C38;
+  --alert:#F0A640; --ok:#62C08B; --grass:#16231A; --grass-line:#5E8A68; --water:#15242F; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#111614; --panel:#18201D; --ink:#E6ECE8; --muted:#9AA7A1; --rule:#2B3531;
+  --silk:#E36A5F; --silk-soft:#3B2522; --bamboo:#A3C46A; --storm:#72AED6; --storm-soft:#1A2C38;
+  --alert:#F0A640; --ok:#62C08B; --grass:#16231A; --grass-line:#5E8A68; --water:#15242F; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:16px;padding-block:28px 60px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:clamp(26px,4.2vw,40px);font-weight:700}
+h2{font-size:clamp(22px,3.1vw,29px);font-weight:700}
+h3{font-size:19px;font-weight:700}
+p{margin:0;max-width:72ch}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:4px}
+.eyebrow{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lede{font-size:17.5px;color:var(--muted)}
+header.top{display:grid;gap:12px;padding-block:8px 22px;border-bottom:1px solid var(--rule)}
+.team{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14.5px;color:var(--muted)}
+.team b{color:var(--ink);font-weight:600}
+nav.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+nav.jump a{color:var(--ink);text-decoration:none;border:1px solid var(--rule);padding:6px 12px;border-radius:999px;font-size:14px;background:var(--panel)}
+nav.jump a:hover{border-color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--storm);outline-offset:2px}
+section.part{display:grid;gap:20px;padding-block:36px 6px;scroll-margin-top:8px}
+.part-head{display:grid;gap:8px}
+.mark-silk{color:var(--silk)} .mark-bamboo{color:var(--bamboo)} .mark-storm{color:var(--storm)}
+.facts{display:grid;gap:8px;padding:14px 16px;border-left:3px solid var(--bamboo);background:var(--panel)}
+.facts p{font-size:15px}
+.facts.storm{border-left-color:var(--storm)}
+.facts.silk{border-left-color:var(--silk)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--rule)}
+th{font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tscroll{overflow-x:auto}
+.fig{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px}
+.fig.even{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:760px){.fig,.fig.even{grid-template-columns:minmax(0,1fr)}}
+.fig-head{grid-column:1/-1;display:grid;gap:4px}
+.fig-head .num{font-size:12.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.canvas{min-width:0}
+.canvas svg{width:100%;height:auto;display:block}
+.photo{display:block;width:100%;height:auto;border-radius:8px;background:#fff;border:1px solid var(--rule)}
+.photo.pad{padding:8px}
+.cap{font-size:13px;color:var(--muted);margin-top:6px}
+.side{display:grid;gap:12px;align-content:start;min-width:0}
+.ctl{display:grid;gap:4px}
+.ctl label{font-size:14px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.ctl label output{font-weight:700;font-variant-numeric:tabular-nums;color:var(--storm);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--storm)}
+.readout{display:grid;grid-template-columns:auto auto;gap:4px 12px;font-size:14.5px;font-variant-numeric:tabular-nums;padding:10px 12px;background:var(--paper);border-radius:8px;margin:0}
+.readout dt{color:var(--muted)} .readout dd{margin:0;text-align:right;font-weight:600}
+.note{font-size:13.5px;color:var(--muted)}
+.callout{font-size:15px;padding:10px 12px;border-radius:8px;background:var(--silk-soft)}
+.callout.storm{background:var(--storm-soft)}
+.svg-ink{fill:var(--ink)} .svg-muted{fill:var(--muted)} .svg-silk{fill:var(--silk)} .svg-storm{fill:var(--storm)}
+svg text{font-family:var(--f-body)}
+.math{display:grid;gap:10px}
+.math .row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:12px;padding-block:8px;border-bottom:1px solid var(--rule)}
+@media (max-width:560px){.math .row{grid-template-columns:minmax(0,1fr);gap:2px}}
+.math .row b{font-size:14px}
+.math .row span{font-size:15px}
+/* công thức */
+.eq{font-family:var(--f-display);font-size:18px;text-align:center;padding:12px 10px;background:var(--paper);border-radius:8px;overflow-x:auto;white-space:nowrap}
+.eq.big{font-size:21px;background:var(--storm-soft)}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 2px}
+.frac>span:first-child{border-bottom:1.2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+i.v{font-family:var(--f-display);font-style:italic}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:10px;align-content:start}
+.card h3{font-size:17px}
+.sol{display:grid;gap:6px;font-size:15px}
+.ans{font-weight:600;color:var(--ok)}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:8px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:start;font-size:15px}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--storm);color:var(--panel);font-weight:700;font-size:13px;display:grid;place-items:center}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;align-items:end}
+.calc label{display:grid;gap:4px;font-size:13.5px;font-weight:600}
+.calc input{font:inherit;font-size:15px;padding:7px 9px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);width:100%}
+.result{font-size:17px;font-weight:700;color:var(--storm)}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--rule);display:grid;gap:8px;font-size:13.5px;color:var(--muted)}
+footer a{color:var(--storm)}
+.sign{display:grid;gap:2px;justify-items:start;font-size:15px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Cuộc thi “Kết nối tri thức Toán học với cuộc sống” · Trường THCS Trưng Vương, phường Hải Châu, Đà Nẵng</div>
+  <h1>Cây nào có thể đổ vào lớp em khi bão về?</h1>
+  <p class="lede">Nếu một cây cao h mét bị đổ, ngọn cây có thể chạm tới mọi điểm cách gốc không quá h mét: đó là hình tròn tâm ở gốc cây, bán kính bằng chiều cao cây. Công trình nằm trong vòng tròn này là công trình có thể bị cây đổ vào.</p>
+</header>
+<section class="part" id="vung-do">
+  <!-- D3 -->
+  <div class="fig" id="figD3">
+    <div class="fig-head"><span class="num">Hình D3 · Bản đồ vùng đổ (sân trường giả định)</span><h3>Vòng tròn bán kính bằng chiều cao cây</h3></div>
+    <div class="canvas"><svg id="svgD3" viewBox="0 0 800 520" role="img" aria-label="Sơ đồ sân trường với cây xanh và vùng đổ" style="touch-action:none"></svg>
+      <p class="note" style="margin-top:6px">Bấm vào một cây để chọn, kéo để đặt lại vị trí. Sơ đồ, vị trí và chiều cao cây là giả định; học sinh thay bằng sơ đồ trường mình và số đo thật.</p></div>
+    <div class="side">
+      <div class="ctl"><label for="pSelH">Chiều cao cây đang chọn <output id="oSelH"></output></label><input type="range" id="pSelH" min="3" max="25" step="0.5" value="14"></div>
+      <p class="callout" id="cD3"></p>
+      <dl class="readout" id="rD3"></dl>
+      <div class="tscroll"><table id="tD3"></table></div>
+      <p class="note">Khoảng cách từ gốc cây tới bức tường nhỏ hơn bán kính H thì đường tròn cắt tường (vị trí tương đối của đường thẳng và đường tròn, Toán 9 Bài 16). Khoảng cách an toàn là nghiệm của bất phương trình d ≥ H (Toán 9 Bài 6).</p>
+    </div>
+  </div>
+  <div class="facts">
+    <p class="note">Mô hình chỉ cho biết vùng có thể bị ảnh hưởng, không đánh giá được sức khỏe của cây (rễ, sâu mục, loài cây). Kết quả gửi nhà trường để nhờ đơn vị cây xanh kiểm tra; học sinh không trèo cây hay tự cắt tỉa.</p>
+  </div>
+</section>
+<footer>
+  <div>Nhóm học sinh: Lê Nguyễn Tú Thanh · Hồ Thục Nhi · Nguyễn Ngọc Lê Vy · GVHD: Trần Thị Lệ</div>
+  <div>Sơ đồ sân trường và số liệu cây là giả định để minh họa phương pháp; học sinh thay bằng số đo thật.</div>
+</footer>
+</div>
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const $=id=>document.getElementById(id);
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function f(x,d){return Number(x).toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function svgPt(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse());}
+const D2R=Math.PI/180;
+
+/* D3: bản đồ vùng đổ */
+const YW=90,YH=58,MD={s:8.4,ox:22,oy:24};
+const BLD=[{n:'Dãy lớp học A',x1:4,y1:3,x2:60,y2:12,k:'lop'},{n:'Dãy lớp học B',x1:72,y1:3,x2:84,y2:44,k:'lop'},{n:'Nhà xe',x1:4,y1:46,x2:22,y2:55,k:'phu'},{n:'Lối đi chính',x1:40,y1:12,x2:48,y2:58,k:'phu'}];
+const TREE0=()=>[[10,24,9],[24,22,8],[34,19,16],[54,24,10],[63,20,14],[64,34,6],[58,42,10],[28,34,7],[14,38,12],[30,50,9],[56,52,15],[68,52,6]].map(t=>({x:t[0],y:t[1],h:t[2]}));
+let trees=TREE0(),selT=2;
+function rectDist(t,b){const dx=Math.max(b.x1-t.x,0,t.x-b.x2),dy=Math.max(b.y1-t.y,0,t.y-b.y2);return Math.hypot(dx,dy);}
+function risk(t){let worst=null;BLD.forEach(b=>{const d=rectDist(t,b);if(d<t.h){if(!worst||(b.k==='lop'&&worst.b.k!=='lop')||(b.k===worst.b.k&&d<worst.d))worst={b,d};}});return worst;}
+const lc=s=>s.charAt(0).toLowerCase()+s.slice(1);
+function drawD3(){
+  const svg=$('svgD3');clear(svg);const X=x=>MD.ox+x*MD.s,Y=y=>MD.oy+y*MD.s;
+  el('rect',{x:X(0),y:Y(0),width:YW*MD.s,height:YH*MD.s,fill:'var(--grass)',stroke:'var(--grass-line)','stroke-width':2},svg);
+  BLD.forEach(b=>{el('rect',{x:X(b.x1),y:Y(b.y1),width:(b.x2-b.x1)*MD.s,height:(b.y2-b.y1)*MD.s,fill:b.k==='lop'?'var(--storm-soft)':'var(--paper)',stroke:b.k==='lop'?'var(--storm)':'var(--muted)','stroke-width':2},svg);
+    const vert=(b.y2-b.y1)>(b.x2-b.x1);const cx=X((b.x1+b.x2)/2),cy=Y((b.y1+b.y2)/2);
+    el('text',{x:cx,y:cy+4,'text-anchor':'middle','font-size':13,'font-weight':600,class:'svg-ink',transform:vert?`rotate(-90 ${cx} ${cy})`:''},svg,b.n);});
+  const cp=el('clipPath',{id:'clipD3'},svg);el('rect',{x:X(0),y:Y(0),width:YW*MD.s,height:YH*MD.s},cp);
+  const g=el('g',{'clip-path':'url(#clipD3)'},svg);
+  const col=t=>{const r=risk(t);return !r?'var(--ok)':(r.b.k==='lop'?'var(--alert)':'var(--silk)');};
+  trees.forEach((t,i)=>el('circle',{cx:X(t.x),cy:Y(t.y),r:t.h*MD.s,fill:col(t),'fill-opacity':i===selT?.16:.06,stroke:col(t),'stroke-width':i===selT?2.5:1.2,'stroke-dasharray':i===selT?'':'5 4'},g));
+  const st=trees[selT],rs=risk(st);
+  if(rs){const b=rs.b;const px=Math.min(Math.max(st.x,b.x1),b.x2),py=Math.min(Math.max(st.y,b.y1),b.y2);
+    el('line',{x1:X(st.x),y1:Y(st.y),x2:X(px),y2:Y(py),stroke:'var(--ink)','stroke-width':2},svg);
+    el('text',{x:(X(st.x)+X(px))/2+6,y:(Y(st.y)+Y(py))/2-6,'font-size':12,'font-weight':700,class:'svg-ink'},svg,f(rs.d,1)+' m');}
+  trees.forEach((t,i)=>{const gg=el('g',{'data-tree':i,style:'cursor:grab'},svg);
+    el('circle',{cx:X(t.x),cy:Y(t.y),r:i===selT?12:10,fill:col(t),stroke:'var(--panel)','stroke-width':i===selT?4:2.5},gg);
+    el('text',{x:X(t.x),y:Y(t.y)+4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:'var(--panel)'},gg,String(i+1));});
+  $('pSelH').value=st.h;$('oSelH').textContent='cây '+(selT+1)+': '+f(st.h,1)+' m';
+  let nearest=null;BLD.forEach(b=>{const d=rectDist(st,b);if(!nearest||d<nearest.d)nearest={b,d};});
+  $('cD3').innerHTML=rs?`Cây ${selT+1} cao <b>${f(st.h,1)} m</b> nhưng chỉ cách ${lc(rs.b.n)} <b>${f(rs.d,1)} m</b>. Vì ${f(rs.d,1)} &lt; ${f(st.h,1)}, đường tròn vùng đổ cắt công trình: ${rs.b.k==='lop'?'<b>có thể đổ vào lớp học</b>':'có thể đổ vào '+lc(rs.b.n)}.`:
+    (Math.abs(nearest.d-st.h)<0.05?`Cây ${selT+1} cao <b>${f(st.h,1)} m</b>, cách ${lc(nearest.b.n)} đúng <b>${f(nearest.d,1)} m</b>. Khoảng cách bằng chiều cao nên đường tròn vùng đổ tiếp xúc với mép công trình: ngọn cây chỉ vừa chạm tới mép, cần theo dõi thêm.`:
+    `Cây ${selT+1} cao <b>${f(st.h,1)} m</b>, công trình gần nhất là ${lc(nearest.b.n)} cách <b>${f(nearest.d,1)} m</b> > ${f(st.h,1)} m: vùng đổ không chạm công trình nào.`);
+  let nl=0,np=0;trees.forEach(t=>{const r=risk(t);if(r){if(r.b.k==='lop')nl++;else np++;}});
+  const mean=trees.reduce((a,t)=>a+t.h,0)/trees.length;
+  $('rD3').innerHTML=`<dt>Số cây</dt><dd>${trees.length}</dd><dt>Chiều cao trung bình</dt><dd>${f(mean,1)} m</dd><dt style="color:var(--alert)">Có thể đổ vào lớp học</dt><dd style="color:var(--alert)">${nl}</dd><dt>Có thể đổ vào lối đi, nhà xe</dt><dd>${np}</dd><dt style="color:var(--ok)">Ngoài vùng công trình</dt><dd style="color:var(--ok)">${trees.length-nl-np}</dd>`;
+  const G=[[0,5],[5,10],[10,15],[15,20],[20,26]];
+  $('tD3').innerHTML='<thead><tr><th>Chiều cao (m)</th><th>Tần số</th><th>Tần số tương đối</th></tr></thead><tbody>'+G.map(([lo,hi])=>{const n=trees.filter(t=>t.h>=lo&&t.h<hi).length;return `<tr><td>[${lo}; ${hi})</td><td>${n}</td><td>${f(n/trees.length*100,1)}%</td></tr>`;}).join('')+'</tbody>';
+}
+$('pSelH').addEventListener('input',()=>{trees[selT].h=+$('pSelH').value;drawD3();});
+(function(){const svg=$('svgD3');let cur=-1,raf4=0;
+  svg.addEventListener('pointerdown',e=>{const g=e.target.closest('g[data-tree]');if(!g)return;cur=+g.getAttribute('data-tree');selT=cur;svg.setPointerCapture(e.pointerId);e.preventDefault();drawD3();});
+  svg.addEventListener('pointermove',e=>{if(cur<0)return;const p=svgPt(svg,e);trees[cur].x=Math.max(0.5,Math.min(YW-0.5,(p.x-MD.ox)/MD.s));trees[cur].y=Math.max(0.5,Math.min(YH-0.5,(p.y-MD.oy)/MD.s));if(!raf4)raf4=requestAnimationFrame(()=>{raf4=0;drawD3();});});
+  ['pointerup','pointercancel'].forEach(ev=>svg.addEventListener(ev,()=>{cur=-1;}));})();
+drawD3();
+})();
+</script>
+</body>
+</html>
