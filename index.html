@@ -122,7 +122,6 @@ footer a{color:var(--storm)}
       <div class="ctl"><label for="pSelH">Chiều cao cây đang chọn <output id="oSelH"></output></label><input type="range" id="pSelH" min="3" max="25" step="0.5" value="14"></div>
       <p class="callout" id="cD3"></p>
       <dl class="readout" id="rD3"></dl>
-      <div class="tscroll"><table id="tD3"></table></div>
       <p class="note">Khoảng cách từ gốc cây tới bức tường nhỏ hơn bán kính H thì đường tròn cắt tường (vị trí tương đối của đường thẳng và đường tròn, Toán 9 Bài 16). Khoảng cách an toàn là nghiệm của bất phương trình d ≥ H (Toán 9 Bài 6).</p>
     </div>
   </div>
@@ -178,8 +177,6 @@ function drawD3(){
   let nl=0,np=0;trees.forEach(t=>{const r=risk(t);if(r){if(r.b.k==='lop')nl++;else np++;}});
   const mean=trees.reduce((a,t)=>a+t.h,0)/trees.length;
   $('rD3').innerHTML=`<dt>Số cây</dt><dd>${trees.length}</dd><dt>Chiều cao trung bình</dt><dd>${f(mean,1)} m</dd><dt style="color:var(--alert)">Có thể đổ vào lớp học</dt><dd style="color:var(--alert)">${nl}</dd><dt>Có thể đổ vào lối đi, nhà xe</dt><dd>${np}</dd><dt style="color:var(--ok)">Ngoài vùng công trình</dt><dd style="color:var(--ok)">${trees.length-nl-np}</dd>`;
-  const G=[[0,5],[5,10],[10,15],[15,20],[20,26]];
-  $('tD3').innerHTML='<thead><tr><th>Chiều cao (m)</th><th>Tần số</th><th>Tần số tương đối</th></tr></thead><tbody>'+G.map(([lo,hi])=>{const n=trees.filter(t=>t.h>=lo&&t.h<hi).length;return `<tr><td>[${lo}; ${hi})</td><td>${n}</td><td>${f(n/trees.length*100,1)}%</td></tr>`;}).join('')+'</tbody>';
 }
 $('pSelH').addEventListener('input',()=>{trees[selT].h=+$('pSelH').value;drawD3();});
 (function(){const svg=$('svgD3');let cur=-1,raf4=0;
